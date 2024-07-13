@@ -1,0 +1,19 @@
+[project]
+name = "Pyisocapi"
+version = "0.0.1"
+authors = [
+	{email="isocapi@gmail.com"},
+]
+
+description = "Python isocapi API wrapper"
+readme = "README.md"
+requires-python = ">= 3.10"
+classifiers = [
+	"Programming Language :: Python :: 3",
+	"License :: OSI Approved :: MIT License",
+]
+
+[project.urls]
+Homepage = "https://isocapi.com/"
+Repository = "https://github.com/isocsoft/pyisocapi"
+Issues = "https://github.com/isocsoft/pyisocapi/issues"
