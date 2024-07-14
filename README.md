@@ -27,8 +27,10 @@ client = IsocapiClient(api_key)
 response = client.get_olx_by_url(url)
 
 print(response)
+>> IsocapiAPIResponse(data={'id': 1234, ...}]}, error='', message='Successfully retrieved data', success=True)
 
->>
+print(response.success)
+>> True
 ```
 </details>
 
@@ -44,13 +46,16 @@ async def main():
     url = "OLX_URL"
 
     client = IsocapiClient(api_key)
-    response = client.get_olx_by_url_async(url)
+    response = await client.get_olx_by_url_async(url)
 
     print(response)
 
 asyncio.run(main())
 
->> 
+>> IsocapiAPIResponse(data={'id': 1234, ...}]}, error='', message='Successfully retrieved data', success=True)
+
+print(response.success)
+>> True
 ```
 </details>
 
