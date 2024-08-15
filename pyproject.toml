@@ -4,6 +4,9 @@ version = "0.0.1"
 authors = [
 	{email="isocapi@gmail.com"},
 ]
+dependencies = [
+	"niquests >= 3.7.2"
+]
 
 description = "Python isocapi API wrapper"
 readme = "README.md"
