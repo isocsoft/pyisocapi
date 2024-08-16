@@ -1,8 +1,8 @@
 __BASE_URL = "https://isocapi.com/api/v1"
 
-ISOCAPI_OLX_BY_URL = f"{__BASE_URL}/olx/url/"
-ISOCAPI_OLX_BY_QUERY = f"{__BASE_URL}/olx/query/"
-
+ISOCAPI_OLX_BY_URL = f"{__BASE_URL}/olx/auction-details-by-url/"
+ISOCAPI_OLX_BY_KEYWORD = f"{__BASE_URL}/olx/auctions-details-by-keyword/"
+ISOCAPI_OTODOM_BY_KEYWORD = f"{__BASE_URL}/otodom/auctions-details-by-keyword/"
 
 ISOCAPI_API_KEY_HEADER = "X-ISOCAPI-KEY"
 

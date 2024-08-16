@@ -12,8 +12,9 @@ from exceptions import (
 
 from constants import (
     ISOCAPI_OLX_BY_URL,
-    ISOCAPI_OLX_BY_QUERY,
+    ISOCAPI_OLX_BY_KEYWORD,
     ISOCAPI_API_KEY_HEADER,
+    ISOCAPI_OTODOM_BY_KEYWORD,
     UNKNOWN_STATUS_CODE_ERR_MSG,
 )
 
@@ -91,7 +92,7 @@ class IsocapiClient:
             raise InvalidPageNumberError
 
         resp = niquests.post(
-            ISOCAPI_OLX_BY_QUERY,
+            ISOCAPI_OLX_BY_KEYWORD,
             json={"query": query, "page": page},
             headers={ISOCAPI_API_KEY_HEADER: self._api_key},
         )
@@ -105,8 +106,51 @@ class IsocapiClient:
 
         async with niquests.AsyncSession() as s:
             resp = await s.post(
-                ISOCAPI_OLX_BY_QUERY,
+                ISOCAPI_OLX_BY_KEYWORD,
                 json={"query": query, "page": page},
+                headers={ISOCAPI_API_KEY_HEADER: self._api_key},
+            )
+
+        resp = self.__response_handling(resp)
+        return self.__niquests_resp_to_isocapi_resp(resp)
+
+    def get_otodom_by_keyword(
+        self, voivodeship: str, city: str = "", district: str = "", page: int = 1
+    ) -> IsocapiAPIResponse:
+        if page <= 0:
+            raise InvalidPageNumberError
+
+        req_body = {"voivodeship": voivodeship, "page": page}
+        if city:
+            req_body["city"] = city
+        if district:
+            req_body["district"] = district
+
+        resp = niquests.post(
+            ISOCAPI_OTODOM_BY_KEYWORD,
+            json=req_body,
+            headers={ISOCAPI_API_KEY_HEADER: self._api_key},
+        )
+
+        resp = self.__response_handling(resp)
+        return self.__niquests_resp_to_isocapi_resp(resp)
+
+    async def get_otodom_by_keyword_async(
+        self, voivodeship: str, city: str = "", district: str = "", page: int = 1
+    ) -> IsocapiAPIResponse:
+        if page <= 0:
+            raise InvalidPageNumberError
+
+        req_body = {"voivodeship": voivodeship, "page": page}
+        if city:
+            req_body["city"] = city
+        if district:
+            req_body["district"] = district
+
+        async with niquests.AsyncSession() as s:
+            resp = await s.post(
+                ISOCAPI_OTODOM_BY_KEYWORD,
+                json=req_body,
                 headers={ISOCAPI_API_KEY_HEADER: self._api_key},
             )
 
