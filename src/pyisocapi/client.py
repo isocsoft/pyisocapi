@@ -1,3 +1,4 @@
+import dataclasses
 import niquests
 
 
@@ -18,6 +19,7 @@ from constants import (
     UNKNOWN_STATUS_CODE_ERR_MSG,
 )
 
+from pyisocapi.payloads import OtodomByKeywordPayload
 from response import IsocapiAPIResponse
 
 
@@ -115,20 +117,14 @@ class IsocapiClient:
         return self.__niquests_resp_to_isocapi_resp(resp)
 
     def get_otodom_by_keyword(
-        self, voivodeship: str, city: str = "", district: str = "", page: int = 1
+        self, payload: OtodomByKeywordPayload
     ) -> IsocapiAPIResponse:
-        if page <= 0:
+        if payload.page <= 0:
             raise InvalidPageNumberError
-
-        req_body = {"voivodeship": voivodeship, "page": page}
-        if city:
-            req_body["city"] = city
-        if district:
-            req_body["district"] = district
 
         resp = niquests.post(
             ISOCAPI_OTODOM_BY_KEYWORD,
-            json=req_body,
+            json=dataclasses.asdict(payload),
             headers={ISOCAPI_API_KEY_HEADER: self._api_key},
         )
 
@@ -136,21 +132,15 @@ class IsocapiClient:
         return self.__niquests_resp_to_isocapi_resp(resp)
 
     async def get_otodom_by_keyword_async(
-        self, voivodeship: str, city: str = "", district: str = "", page: int = 1
+        self, payload: OtodomByKeywordPayload
     ) -> IsocapiAPIResponse:
-        if page <= 0:
+        if payload.page <= 0:
             raise InvalidPageNumberError
-
-        req_body = {"voivodeship": voivodeship, "page": page}
-        if city:
-            req_body["city"] = city
-        if district:
-            req_body["district"] = district
 
         async with niquests.AsyncSession() as s:
             resp = await s.post(
                 ISOCAPI_OTODOM_BY_KEYWORD,
-                json=req_body,
+                json=dataclasses.asdict(payload),
                 headers={ISOCAPI_API_KEY_HEADER: self._api_key},
             )
 
