@@ -1,8 +1,8 @@
 from dataclasses import dataclass
-from enum import IntEnum, StrEnum
+from enum import IntEnum, Enum
 
 
-class Voivodeship(StrEnum):
+class Voivodeship(str, Enum):
     DOLNOSLASKIE = "dolnoslaskie"
     KUJAWSKO_POMORSKIE = "kujawsko-pomorskie"
     LODZKIE = "lodzkie"
@@ -21,7 +21,7 @@ class Voivodeship(StrEnum):
     ZACHODNIOPOMORSKIE = "zachodniopomorskie"
 
 
-class Type(StrEnum):
+class Type(str, Enum):
     APARTMENT = "mieszkanie"
     STUDIO = "kawalerka"
     HOUSE = "dom"
@@ -33,17 +33,17 @@ class Type(StrEnum):
     GARAGE = "garaz"
 
 
-class TransactionType(StrEnum):
+class TransactionType(str, Enum):
     SALE = "sprzedaz"
     RENT = "wynajem"
 
 
-class OrderBy(StrEnum):
+class OrderBy(str, Enum):
     ASC = "asc"
     DESC = "desc"
 
 
-class SortBy(StrEnum):
+class SortBy(str, Enum):
     AREA = "area"
     LATEST = "latest"
     PRICE = "price"
@@ -55,19 +55,19 @@ class DaysSincePublishing(IntEnum):
     SEVEN = 7
 
 
-class MarketType(StrEnum):
+class MarketType(str, Enum):
     PRIMARY = "primary"
     SECONDARY = "secondary"
 
 
-class OwnershipType(StrEnum):
+class OwnershipType(str, Enum):
     ALL = "all"
     DEVELOPER = "developer"
     AGENCY = "agency"
     PRIVATE = "private"
 
 
-class RoomsAmount(StrEnum):
+class RoomsAmount(str, Enum):
     ONE = "one"
     TWO = "two"
     THREE = "three"
@@ -76,7 +76,7 @@ class RoomsAmount(StrEnum):
     SIX_PLUS = "six_plus"
 
 
-class Floors(StrEnum):
+class Floors(str, Enum):
     CELLAR = "cellar"
     FIRST = "first"
     SECOND = "second"
@@ -92,7 +92,7 @@ class Floors(StrEnum):
     GARRET = "garret"
 
 
-class BuildingType(StrEnum):
+class BuildingType(str, Enum):
     BLOCK = "block"
     TENEMENT = "tenement"
     HOUSE = "house"
@@ -102,7 +102,7 @@ class BuildingType(StrEnum):
     LOFT = "loft"
 
 
-class BuildingMaterials(StrEnum):
+class BuildingMaterials(str, Enum):
     BRICK = "brick"
     WOOD = "wood"
     BREEZE_BLOCK = "breezeblock"
@@ -115,7 +115,7 @@ class BuildingMaterials(StrEnum):
     REINFORCED_CONCRETE = "reinforced_concrete"
 
 
-class Extras(StrEnum):
+class Extras(str, Enum):
     TERRACE = "terrace"
     BALCONY = "balcony"
     GARAGE = "garage"
