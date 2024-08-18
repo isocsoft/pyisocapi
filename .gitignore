@@ -1,2 +1,3 @@
 .venv
-src/pyisocapi/__pycache__/
+**/__pycache__/
+**/*.egg-info

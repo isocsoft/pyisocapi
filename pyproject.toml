@@ -20,3 +20,8 @@ classifiers = [
 Homepage = "https://isocapi.com/"
 Repository = "https://github.com/isocsoft/pyisocapi"
 Issues = "https://github.com/isocsoft/pyisocapi/issues"
+
+[project.optional-dependencies]
+test = [
+	"parameterized",
+]

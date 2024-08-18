@@ -2,7 +2,7 @@ import dataclasses
 import niquests
 
 
-from exceptions import (
+from .exceptions import (
     BadRequestError,
     InternalServerError,
     RateLimitedError,
@@ -11,7 +11,7 @@ from exceptions import (
     InvalidPageNumberError,
 )
 
-from constants import (
+from .constants import (
     ISOCAPI_OLX_BY_URL,
     ISOCAPI_OLX_BY_KEYWORD,
     ISOCAPI_API_KEY_HEADER,
@@ -19,8 +19,8 @@ from constants import (
     UNKNOWN_STATUS_CODE_ERR_MSG,
 )
 
-from pyisocapi.payloads import OtodomByKeywordPayload
-from response import IsocapiAPIResponse
+from .payloads import OtodomByKeywordPayload
+from .response import IsocapiAPIResponse
 
 
 class IsocapiClient:
@@ -78,7 +78,7 @@ class IsocapiClient:
         resp = self.__response_handling(resp)
         return self.__niquests_resp_to_isocapi_resp(resp)
 
-    async def get_old_by_url_async(self, url: str) -> IsocapiAPIResponse:
+    async def get_olx_by_url_async(self, url: str) -> IsocapiAPIResponse:
         async with niquests.AsyncSession() as s:
             resp = await s.post(
                 ISOCAPI_OLX_BY_URL,
@@ -89,27 +89,29 @@ class IsocapiClient:
         resp = self.__response_handling(resp)
         return self.__niquests_resp_to_isocapi_resp(resp)
 
-    def get_olx_by_query(self, query: str, page: int) -> IsocapiAPIResponse:
+    def get_olx_by_keyword(self, keyword: str, page: int) -> IsocapiAPIResponse:
         if page <= 0:
             raise InvalidPageNumberError
 
         resp = niquests.post(
             ISOCAPI_OLX_BY_KEYWORD,
-            json={"query": query, "page": page},
+            json={"query": keyword, "page": page},
             headers={ISOCAPI_API_KEY_HEADER: self._api_key},
         )
 
         resp = self.__response_handling(resp)
         return self.__niquests_resp_to_isocapi_resp(resp)
 
-    async def get_old_by_query_async(self, query: str, page: int) -> IsocapiAPIResponse:
+    async def get_olx_by_keyword_async(
+        self, keyword: str, page: int
+    ) -> IsocapiAPIResponse:
         if page <= 0:
             raise InvalidPageNumberError
 
         async with niquests.AsyncSession() as s:
             resp = await s.post(
                 ISOCAPI_OLX_BY_KEYWORD,
-                json={"query": query, "page": page},
+                json={"query": keyword, "page": page},
                 headers={ISOCAPI_API_KEY_HEADER: self._api_key},
             )
 
