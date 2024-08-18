@@ -19,7 +19,7 @@ from .constants import (
     UNKNOWN_STATUS_CODE_ERR_MSG,
 )
 
-from .payloads import OtodomByKeywordPayload
+from .payloads.otodom import KeywordPayload as OtodomByKeywordPayload
 from .response import IsocapiAPIResponse
 
 
