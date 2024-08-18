@@ -35,7 +35,6 @@ class TestResponseExceptionHandler(TestCase):
         exception_msg: str | None,
         mock_response: mock.MagicMock,
     ):
-
         method = getattr(self.client, "_IsocapiClient__response_handling")
         mock_response.status_code = status_code
         if exception_msg:

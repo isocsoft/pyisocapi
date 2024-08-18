@@ -24,4 +24,7 @@ Issues = "https://github.com/isocsoft/pyisocapi/issues"
 [project.optional-dependencies]
 test = [
 	"parameterized",
+	"ruff",
+	"pre-commit",
 ]
+

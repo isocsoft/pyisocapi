@@ -1,5 +1,4 @@
 from unittest import IsolatedAsyncioTestCase, mock
-from parameterized import parameterized
 from pyisocapi.exceptions import (
     InvalidPageNumberError,
 )
