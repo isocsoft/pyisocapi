@@ -8,7 +8,7 @@ dependencies = [
 	"niquests >= 3.7.2"
 ]
 
-description = "Python isocapi API wrapper"
+description = "Python Isocapi API wrapper"
 readme = "README.md"
 requires-python = ">= 3.10"
 classifiers = [
@@ -18,7 +18,7 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://isocapi.com/"
-Repository = "https://github.com/isocsoft/pyisocapi"
+Repository = "https://github.com/isocsoft/pyisocapi.git"
 Issues = "https://github.com/isocsoft/pyisocapi/issues"
 
 [project.optional-dependencies]
