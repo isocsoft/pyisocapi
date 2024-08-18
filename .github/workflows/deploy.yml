@@ -75,10 +75,10 @@ jobs:
       
       - name: check output
         run: |
-          if [ "${{ steps.version_check.outputs.local_version_is_higher }}" ]; then
+          if [[ "${{ steps.version_check.outputs.local_version_is_higher }}" == "false" ]]; then
             local=${{ steps.version_check.outputs.local_version }}
-            pypi=${{ steps.version_check.outputs.local_version }}
-          echo "Error: local version($local) <= PyPI($pypi), bump it to publish"
+            pypi=${{ steps.version_check.outputs.public_version }}
+            echo "ERROR: local version($local) <= PyPI($pypi), bump it to publish package"
             exit 1
           fi            
 
