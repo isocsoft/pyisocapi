@@ -7,21 +7,30 @@ from .mocks import (
     mock_valid_request,
 )
 from pyisocapi.client import IsocapiClient
-from pyisocapi.payloads import OtodomByKeywordPayload
+from pyisocapi.payloads.otodom import (
+    KeywordPayload,
+    TransactionType,
+    Type,
+    Voivodeship,
+)
 from pyisocapi.response import IsocapiAPIResponse
 
-VALID_PAYLOAD = OtodomByKeywordPayload(
+VALID_PAYLOAD = KeywordPayload(
     page=1,
-    voivodeship="mazowieckie",
+    voivodeship=Voivodeship.MAZOWIECKIE,
     city="",
     district="",
-    type="",
-    transaction_type="",
+    type=Type.APARTMENT,
+    transaction_type=TransactionType.SALE,
 )
 
-
-INVALID_PAGE_PAYLOAD = OtodomByKeywordPayload(
-    page=0, voivodeship="", city="", district="", type="", transaction_type=""
+INVALID_PAGE_PAYLOAD = KeywordPayload(
+    page=0,
+    voivodeship=Voivodeship.MAZOWIECKIE,
+    city="",
+    district="",
+    type=Type.APARTMENT,
+    transaction_type=TransactionType.SALE,
 )
 
 VALID_RESPONSE = IsocapiAPIResponse(

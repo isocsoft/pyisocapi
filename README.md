@@ -59,6 +59,9 @@ print(response.success)
 ```
 </details>
 
+#### Payloads
+Some of the methods (e.g. get_otodom_by_keyword) require more complex payloads that are wrapped in convenient types which can be imported from `pyisocapi.payloads`
+
 #### Handling exceptions
 Unsuccessful requests raise exceptions. The class of the exception will reflect the sort of error that occurred. To handle them yourself import them from `pyisocapi.exceptions`
 
