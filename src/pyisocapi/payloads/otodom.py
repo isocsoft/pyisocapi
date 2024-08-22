@@ -137,8 +137,8 @@ class KeywordPayload:
     type: Type
     transaction_type: TransactionType
 
-    order_by: OrderBy | None = None
-    sort_by: SortBy | None = None
+    order_by: OrderBy | str | None = None
+    sort_by: SortBy | str | None = None
 
     min_price: int | None = None
     max_price: int | None = None
@@ -149,16 +149,16 @@ class KeywordPayload:
     max_amount_of_floors: int | None = None
     min_price_per_meter: int | None = None
     max_price_per_meter: int | None = None
-    days_since_publishing: DaysSincePublishing | None = None
+    days_since_publishing: DaysSincePublishing | int | None = None
     build_year_min: int | None = None
     build_year_max: int | None = None
 
-    market_type: MarketType | None = None
-    ownership_type: OwnershipType | None = None
+    market_type: MarketType | str | None = None
+    ownership_type: OwnershipType | str | None = None
     description_contains: str | None = None
 
-    rooms_amount: list[RoomsAmount] | None = None
-    floors: list[Floors] | None = None
-    building_type: list[BuildingType] | None = None
-    building_materials: list[BuildingMaterials] | None = None
-    extras: list[Extras] | None = None
+    rooms_amount: list[RoomsAmount | str] | None = None
+    floors: list[Floors | str] | None = None
+    building_type: list[BuildingType | str] | None = None
+    building_materials: list[BuildingMaterials | str] | None = None
+    extras: list[Extras | str] | None = None
