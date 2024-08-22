@@ -1,6 +1,6 @@
 [project]
-name = "Pyisocapi"
-version = "0.0.2"
+name = "pyisocapi"
+version = "0.0.3"
 authors = [
 	{email="isocapi@gmail.com"},
 ]

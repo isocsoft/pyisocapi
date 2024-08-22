@@ -16,10 +16,12 @@ from .constants import (
     ISOCAPI_OLX_BY_KEYWORD,
     ISOCAPI_API_KEY_HEADER,
     ISOCAPI_OTODOM_BY_KEYWORD,
+    ISOCAPI_VINTED_BY_KEYWORD,
     UNKNOWN_STATUS_CODE_ERR_MSG,
 )
 
 from .payloads.otodom import KeywordPayload as OtodomByKeywordPayload
+from .payloads.vinted import KeywordPayload as VintedByKeywordPayload
 from .response import IsocapiAPIResponse
 
 
@@ -143,6 +145,45 @@ class IsocapiClient:
             resp = await s.post(
                 ISOCAPI_OTODOM_BY_KEYWORD,
                 json=dataclasses.asdict(payload),
+                headers={ISOCAPI_API_KEY_HEADER: self._api_key},
+            )
+
+        resp = self.__response_handling(resp)
+        return self.__niquests_resp_to_isocapi_resp(resp)
+
+    def get_vinted_by_keyword(
+        self, payload: VintedByKeywordPayload
+    ) -> IsocapiAPIResponse:
+        if payload.page <= 0:
+            raise InvalidPageNumberError
+
+        resp = niquests.post(
+            ISOCAPI_VINTED_BY_KEYWORD,
+            json={
+                "page": payload.page,
+                "keyword": payload.keyword,
+                "countryCode": payload.country_code,
+            },
+            headers={ISOCAPI_API_KEY_HEADER: self._api_key},
+        )
+
+        resp = self.__response_handling(resp)
+        return self.__niquests_resp_to_isocapi_resp(resp)
+
+    async def get_vinted_by_keyword_async(
+        self, payload: VintedByKeywordPayload
+    ) -> IsocapiAPIResponse:
+        if payload.page <= 0:
+            raise InvalidPageNumberError
+
+        async with niquests.AsyncSession() as s:
+            resp = await s.post(
+                ISOCAPI_VINTED_BY_KEYWORD,
+                json={
+                    "page": payload.page,
+                    "keyword": payload.keyword,
+                    "countryCode": payload.country_code,
+                },
                 headers={ISOCAPI_API_KEY_HEADER: self._api_key},
             )
 
