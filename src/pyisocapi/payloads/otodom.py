@@ -131,11 +131,11 @@ class Extras(str, Enum):
 class KeywordPayload:
     page: int
 
-    voivodeship: Voivodeship
+    voivodeship: Voivodeship | str
     city: str
     district: str
-    type: Type
-    transaction_type: TransactionType
+    type: Type | str
+    transaction_type: TransactionType | str
 
     order_by: OrderBy | str | None = None
     sort_by: SortBy | str | None = None
